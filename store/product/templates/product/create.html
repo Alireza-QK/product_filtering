@@ -9,7 +9,81 @@
         <div class="col-12 col-md-8">
             <h3>Create new product</h3>
             <hr>
-            {{ form.as_p }}
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}">Title</label>
+                            {{ form.title }}
+                            {{ form.title.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="{{ form.description.id_for_label }}">Description</label>
+                            {{ form.description }}
+                            {{ form.description.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}">Category</label>
+                            {{ form.category }}
+                            {{ form.category.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.price.id_for_label }}">Price</label>
+                            {{ form.price }}
+                            {{ form.price.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.count_stock.id_for_label }}">Count stock</label>
+                            {{ form.count_stock }}
+                            {{ form.count_stock.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.count_like.id_for_label }}">Count like</label>
+                            {{ form.count_like }}
+                            {{ form.count_like.errors }}
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.count_views.id_for_label }}">Count views</label>
+                            {{ form.count_views }}
+                            {{ form.count_views.errors }}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="{{ form.image.id_for_label }}">Image</label>
+                            {{ form.image }}
+                            {{ form.image.errors }}
+                        </div>
+                    </div>
+                    
+
+                </div>
+                
+                <button type="submit" class="btn btn-outline-info btn-block mb-5">Create</button>
+            </form>
         </div>
     </div>
 </div>
