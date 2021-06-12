@@ -49,3 +49,14 @@ class ProductCreateForm(forms.ModelForm):
 			raise forms.ValidationError('Please enter a count views valid')
 		
 		return count_views
+
+
+class CategoryCreateForm(models.ModelForm):
+
+	class Meta:
+		model = Category
+		fields = ('slug', )
+
+		widget = {
+			'slug': forms.TextInput(attrs={'class': 'form-control'})
+		}
