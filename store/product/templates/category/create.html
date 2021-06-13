@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <h3>{{ title }}</h3>
+            <hr>
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}">Title</label>
+                            {{ form.title }}
+                            {{ form.title.errors }}
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-outline-info btn-block mb-5">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

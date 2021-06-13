@@ -51,12 +51,12 @@ class ProductCreateForm(forms.ModelForm):
 		return count_views
 
 
-class CategoryCreateForm(models.ModelForm):
+class CategoryCreateForm(forms.ModelForm):
 
 	class Meta:
 		model = Category
-		fields = ('slug', )
+		fields = ('title', )
 
-		widget = {
-			'slug': forms.TextInput(attrs={'class': 'form-control'})
+		widgets = {
+			'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name...'})
 		}

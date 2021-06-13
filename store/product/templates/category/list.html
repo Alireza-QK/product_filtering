@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Create new Category{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+            <h3 class="mt-5">List Category</h3>
+            <hr>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Created</th>
+                    <th>actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                  <tr>
+                    <th scope="row">{{ category.id }}</th>
+                    <td>{{ category.title }}</td>
+                    <td>{{ category.slug }}</td>
+                    <td>{{ category.created }}</td>
+                    <th>
+                        <a href="{% url 'product:category_edit' category.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'product:category_delete' category.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </th>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
