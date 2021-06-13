@@ -5,6 +5,9 @@ from .views import (
     product_edit,
     product_delete,
 
+    # Product home
+    homePage,
+
     create_category,
     category_list,
     category_delete,
@@ -18,6 +21,9 @@ urlpatterns = [
     path('create/', create_product, name='product_create'),
     path('edit/<int:pk>/', product_edit, name="product_edit"),
     path('remove/<int:pk>/', product_delete, name="product_delete"),
+
+    # Product home
+    path('', homePage, name="home"),
 
     # Category
     path('category/list/', category_list, name="category_list"),

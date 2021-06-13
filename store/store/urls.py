@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from product.views import homePage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('product/', include('product.urls', namespace='product')),
+    path('', homePage, name='home'),
 ]
 
 

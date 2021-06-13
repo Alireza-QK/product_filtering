@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import Product, Category
 from .forms import ProductCreateForm, CategoryCreateForm
 
-
+# *********************************** Section Product ***********************************
 def product_list(request):
 
 	products = Product.objects.all()
@@ -166,3 +166,16 @@ def category_edit(request, pk):
 	else:
 		form = CategoryCreateForm(instance=category)
 	return render(request, 'category/create.html', {'form': form, 'title': 'Edit category'})
+
+
+
+# *********************************** Section Home product show ***********************************
+def homePage(request):
+	
+	products = Product.objects.all().order_by('-created')
+
+	context = {
+		'products': products
+	}
+
+	return render(request, 'product/home_page.html', context)
