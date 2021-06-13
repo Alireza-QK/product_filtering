@@ -7,6 +7,17 @@ from .models import Product, Category
 from .forms import ProductCreateForm, CategoryCreateForm
 
 
+def product_list(request):
+
+	products = Product.objects.all()
+
+	context = {
+		'products': products
+	}
+
+	return render(request, 'product/list.html', context)
+
+
 def create_product(request):
 
 	if request.method == 'POST':
@@ -40,7 +51,52 @@ def create_product(request):
 	return render(request, 'product/create.html', context)
 
 
+def product_edit(request, pk):
 
+	product = get_object_or_404(Product, pk=pk)
+
+	if request.method == 'POST':
+		
+		form = ProductCreateForm(request.POST, instance=product, files=request.FILES)
+
+		if form.is_valid():
+			cd = form.cleaned_data
+			product = form.save(commit=False)
+
+			product.title = cd['title']
+			product.slug = slugify(cd['title'])
+			product.price = cd['price']
+			product.description = cd['description']
+			product.image = cd['image']
+			product.count_stock = cd['count_stock']
+			product.count_like = cd['count_like']
+			product.count_views = cd['count_views']
+			product.category = cd['category']
+
+			product.save()
+
+			return redirect('product:product_list')
+
+	else:
+		form = ProductCreateForm(instance=product)
+	
+	context = {
+		'form': form
+	}
+
+	return render(request, 'product/create.html', context)
+
+
+def product_delete(request, pk):
+
+	product = get_object_or_404(Product, pk=pk)
+
+	product.delete()
+	messages.success(request, 'Delete successfuly.')
+	return redirect(reverse('product:product_list'))
+	
+
+# *********************************** Section Category ***********************************
 # Show list category
 def category_list(request):
 
